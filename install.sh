@@ -7,7 +7,7 @@ echo "请选择类型:"
 echo "1. 后端"
 echo "2. 前端"
 
-read -p "请输入 1 或 2: " choice
+read -p "请输入 1 或 2: " choice < /dev/tty
 
 if [ "$choice" = "1" ]; then
     URL="$BACKEND_URL"
@@ -31,6 +31,7 @@ fi
 
 cp AGENTS.md CLAUDE.md
 
+echo ""
 echo "完成"
 echo "已生成:"
 echo "- AGENTS.md"
