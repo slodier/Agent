@@ -8,7 +8,7 @@ read -p "请输入项目名称: " PROJECT_NAME
 
 # 显示进度：创建 Vite 项目
 echo -e "\033[42;30m [1/7] 正在创建 Vite 项目... \033[0m"
-pnpm create vite "$PROJECT_NAME" --template vue
+pnpm create vite "$PROJECT_NAME" --template vue <<< ""
 
 # 进入项目目录并安装依赖
 echo -e "\033[42;30m [2/7] 进入项目目录并安装依赖... \033[0m"

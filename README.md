@@ -7,5 +7,5 @@ curl -fsSL https://raw.githubusercontent.com/slodier/Agent/main/install.sh | bas
 
 ## H5初始化
 ```bash
-curl -fsSL https://raw.githubusercontent.com/slodier/Agent/main/vite-h5-full-final.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/slodier/Agent/main/vite-h5-full-final.sh)
 ```
