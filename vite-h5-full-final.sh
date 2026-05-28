@@ -32,7 +32,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import routes from './router.js';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.VITE_BASE || '/'),
   routes
 });
 
@@ -54,7 +54,7 @@ EOF
 # 修改 Vite 配置文件
 echo -e "\033[42;30m [6/7] 修改 Vite 配置文件... \033[0m"
 # 清空并写入 Vite 配置文件
-echo 'import { defineConfig } from "vite";' > vite.config.js
+echo 'import { defineConfig, loadEnv } from "vite";' > vite.config.js
 echo 'import vue from "@vitejs/plugin-vue";' >> vite.config.js
 echo 'import Components from "unplugin-vue-components/vite";' >> vite.config.js
 echo 'import NutUIResolver from "@nutui/auto-import-resolver";' >> vite.config.js
@@ -63,8 +63,10 @@ echo 'import path from "path";' >> vite.config.js
 echo '' >> vite.config.js
 echo 'const timestamp = new Date().getTime(); // 生成时间戳' >> vite.config.js
 echo '' >> vite.config.js
-echo 'export default defineConfig({' >> vite.config.js
-echo '  base: process.env.VITE_BASE || "/", ' >> vite.config.js
+echo 'export default defineConfig(({ mode }) => {' >> vite.config.js
+echo '  const env = loadEnv(mode, process.cwd(), "");' >> vite.config.js
+echo '  return {' >> vite.config.js
+echo '  base: env.VITE_BASE || "/", ' >> vite.config.js
 echo '  build: {' >> vite.config.js
 echo '    rollupOptions: {' >> vite.config.js
 echo '      output: {' >> vite.config.js
@@ -92,6 +94,7 @@ echo '    alias: {' >> vite.config.js
 echo '      "@": path.resolve(__dirname, "./src"),' >> vite.config.js
 echo '    },' >> vite.config.js
 echo '  },' >> vite.config.js
+echo '  };' >> vite.config.js
 echo '});' >> vite.config.js
 
 # 添加自适应配置文件
@@ -207,13 +210,13 @@ rm -rf src/components
 # 创建环境变量文件
 cat > .env.development <<EOF
 NODE_ENV = 'development'
-VITE_APP_BASE_API = '/'
+VITE_BASE = '/'
 VITE_APP_BASE_API = 'https://jnjmp.litianeb.com/safe-api-nov/'
 EOF
 
 cat > .env.production <<EOF
 NODE_ENV = 'production'
-VITE_APP_BASE_API = '/'
+VITE_BASE = '/xxx/'
 VITE_APP_BASE_API = 'https://jnjmp.litianeb.com/safe-api-nov/'
 EOF
 
