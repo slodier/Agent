@@ -90,6 +90,7 @@
 - 不允许频繁 onLoad 请求
 - 必须确认安卓/iOS 差异
 - 必须确认微信/支付宝差异
+- **JnChart 不显示**：不能把高度 class 直接加在 `<JnChart>` 组件上，scoped 内部样式 `height:100%` 优先级更高会覆盖外部 class，导致 canvas 高度为 0。必须用 `<view>` 包一层并在 view 上设定高度，JnChart 内部 canvas 通过 `height:100%` 继承。示例：`<view style="height:240px"><JnChart :option="opt"/></view>`
 
 ## 性能
 
