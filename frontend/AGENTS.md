@@ -116,3 +116,9 @@
 - 长列表必须分页
 - 图片必须懒加载
 - 视频必须确认码率
+
+## 动画框架
+
+- 官网/落地页/营销页考虑引入 GSAP（ScrollTrigger、Timeline）
+- 管理后台、小程序禁止引入 GSAP，用 Vue Transition 或 CSS 动画替代
+- 非官网场景如有简单滚动动画需求，优先用 AOS.js（搭配 Animate.css）或 Intersection Observer，不引 GSAP
