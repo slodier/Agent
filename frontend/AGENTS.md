@@ -54,6 +54,11 @@
 - 列表页切换 tab/筛选条件时，必须取消上一个请求（AbortController）
 - 删除操作必须二次确认
 
+## 交互 / UX
+
+- 需要 loading 状态时，必须先确认展示方式：组件覆盖、按钮 disabled、按钮文案变更、骨架屏等；需求未明确前禁止擅自决定
+- 任何 UI/UX 细节若需求未明确，必须先询问再实现，包括但不限于：loading 表现、错误提示样式、空状态展示、动画效果、成功反馈方式、按钮禁用态
+
 ## 表单
 
 - 提交前必须 trim 字符串，防止空格导致校验通过但数据异常
@@ -119,6 +124,6 @@
 
 ## 动画框架
 
-- 官网/落地页/营销页考虑引入 GSAP（ScrollTrigger、Timeline）
+- 官网/落地页/营销页面向外部用户的前台系统, 考虑引入 GSAP（ScrollTrigger、Timeline）
 - 管理后台、小程序禁止引入 GSAP，用 Vue Transition 或 CSS 动画替代
-- 非官网场景如有简单滚动动画需求，优先用 AOS.js（搭配 Animate.css）或 Intersection Observer，不引 GSAP
+- Animate.css 可按需搭配用于补充具体动画效果
