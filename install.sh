@@ -59,7 +59,7 @@ elif [ "$choice" = "5" ]; then
     curl -fsSL "$BACKEND_URL" -o "$TMP_DIR/backend.md" || { echo "拉取失败"; exit 1; }
     echo "正在拉取前端 AGENTS.md..."
     curl -fsSL "$FRONTEND_URL" -o "$TMP_DIR/frontend.md" || { echo "拉取失败"; exit 1; }
-    # 后端全文（含工作流）+ 前端从 "# Vue3" 起的技术规则，工作流只保留一份
+    # 后端全文（含输出规范与工作流）+ 前端从 "# Vue3" 起的技术规则，输出规范与工作流只保留一份
     grep -q '^# Vue3$' "$TMP_DIR/frontend.md" || { echo "前端 AGENTS.md 缺少 '# Vue3' 标题，无法合并"; exit 1; }
     { cat "$TMP_DIR/backend.md"; printf '\n---\n\n'; sed -n '/^# Vue3$/,$p' "$TMP_DIR/frontend.md"; } > AGENTS.md
     printf '@AGENTS.md\n' > CLAUDE.md
